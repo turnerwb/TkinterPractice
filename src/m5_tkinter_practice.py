@@ -12,28 +12,43 @@ from tkinter import ttk
 def main():
     """ Constructs a GUI with stuff on it. """
     # ------------------------------------------------------------------
-    # TODO: 2. After reading and understanding the m1e module,
+    # DONE: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # ------------------------------------------------------------------
-
+    root = tkinter.Tk()
+    frame = ttk.Frame(root, padding=10)
+    frame.grid()
+    button = ttk.Button(frame, text="Hello")
+    button.grid()
+    hellobutton = ttk.Button(frame, text="Hello/Goodbye")
+    hellobutton.grid()
+    printbutton = ttk.Button(frame, text="Print")
+    printbutton.grid()
+    entrybox = ttk.Entry(frame)
+    entrybox.grid()
+    intbox = ttk.Entry(frame)
+    intbox.grid()
+    button["command"] = lambda: (print("Hello"))
+    hellobutton["command"] = lambda: hello_goodbye(entrybox)
+    printbutton["command"] = lambda: print_text(entrybox, intbox)
+    root.mainloop()
     # ------------------------------------------------------------------
-    # TODO: 3. After reading and understanding the m2e module,
+    # DONE: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # ------------------------------------------------------------------
 
     # ------------------------------------------------------------------
-    # TODO: 4. After reading and understanding the m2e module,
+    # DONE: 4. After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # ------------------------------------------------------------------
-
     # ------------------------------------------------------------------
-    # TODO: 5. After reading and understanding the m3e module,
+    # DONE: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # ------------------------------------------------------------------
 
     # ------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # DONE: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
@@ -41,8 +56,23 @@ def main():
     #        is the string 'ok', but print "Goodbye" otherwise.
     # ------------------------------------------------------------------
 
+
+def hello_goodbye(entry):
+    if entry.get() == "ok":
+        print("Hello")
+    else:
+        print("Goodbye")
+
+def print_text(entry, intbox):
+    try:
+        integer = int(intbox.get())
+        text = entry.get()
+        for k in range(integer):
+            print(text)
+    except ValueError:
+        print("You did not put an integer in the second box \n Please try again!")
     # ------------------------------------------------------------------
-    # TODO: 7.
+    # DONE: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
